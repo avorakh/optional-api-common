@@ -1,0 +1,12 @@
+[versions]
+spock = '2.3-groovy-3.0'
+jb-annotation = '23.0.0'
+lombok = '1.18.24'
+groovy = '3.0.13'
+
+[libraries]
+spock-core = { module = 'org.spockframework:spock-core', version.ref = 'spock' }
+lombok = { module = 'org.projectlombok:lombok', version.ref = 'lombok' }
+jetbrains-annotations = { module = 'org.jetbrains:annotations', version.ref = 'jb-annotation' }
+groovy-all = { module = 'org.codehaus.groovy:groovy-all', version.ref = 'groovy' }
+

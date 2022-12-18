@@ -1,0 +1,64 @@
+buildscript {
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+}
+
+group = 'by.avorakh.common'
+
+rootProject.version = '0.1.0'
+
+subprojects {
+
+    apply plugin: 'java-library'
+    apply plugin: 'groovy'
+    apply plugin: 'jvm-test-suite'
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(11)
+        }
+    }
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+
+    dependencies {
+        compileOnly libs.lombok
+        annotationProcessor libs.lombok
+        compileOnly libs.jetbrains.annotations
+
+        testCompileOnly libs.lombok
+        testAnnotationProcessor libs.lombok
+        testCompileOnly libs.jetbrains.annotations
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+    testing {
+        suites {
+            test {
+                dependencies {
+                    implementation libs.spock.core
+                }
+                configurations {
+                    compileOnly {
+                        extendsFrom annotationProcessor
+                    }
+                }
+            }
+        }
+    }
+}
+
+wrapper {
+    gradleVersion = '7.4.2'
+    distributionType = Wrapper.DistributionType.ALL
+}
